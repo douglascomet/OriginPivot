@@ -1,8 +1,8 @@
 # OriginPivot
 This is a Python script designed to move a mesh and its pivot to the origin.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=https://www.youtube.com/watch?v=bphMRwqRSNE
-" target="_blank"><img src="http://img.youtube.com/vi/https://www.youtube.com/watch?v=bphMRwqRSNE/0.jpg" 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=bphMRwqRSNE
+" target="_blank"><img src="http://img.youtube.com/vi/bphMRwqRSNE/0.jpg" 
 alt="Demo Video" width="240" height="180" border="10" /></a>
 
 
