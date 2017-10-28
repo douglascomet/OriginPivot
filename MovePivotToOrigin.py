@@ -22,13 +22,10 @@ def MovePivotToOrigin():
         cmds.makeIdentity( apply = True, r = True, s = True, t = True, n = False, pn = True )
 
         #gets the current world location of the mesh based on its pivot
-        curPos = cmds.xform( meshes,q = True, ws = True, piv = True )
+        curPos = cmds.xform( meshes, q = True, ws = True, piv = True )
 
-        #determines the distance to the origin from the current location in worldspace of the pivot
-        distanceToOrigin = [ - ( curPos[ 0 ] ), - ( curPos[ 1 ] ), - ( curPos[ 2 ] ) ]
-
-        #moves pivot to the bottom of the bounding box
-        cmds.xform( meshes, piv = distanceToOrigin, ws=True )
+        #moves pivot to the bottom of the origin
+        cmds.xform( meshes, piv = [ 0, 0, 0 ], ws=True )
 
         #freeze transforms after the move
         cmds.makeIdentity( apply = True, r = True, s = True, t = True, n = False, pn = True ) 
