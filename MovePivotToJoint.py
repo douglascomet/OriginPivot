@@ -1,55 +1,71 @@
-#!/usr/bin/env python
-#title           :MovePivotToJoint.py
-#description     :Script used to each object's pivot from a selection to the worldspace location of a selected joint
-#author          :Doug Halley
-#date            :20171028
-#version         :1.0
-#usage           :In Maya MovePivotToJoint.MovePivotToJoint()
-#notes           :
-#python_version  :2.7.5  
+#==============================================================================
+# !/usr/bin/env python
+# title           :MovePivotToJoint.py
+# description     :Script used to each object's pivot from a selection to the worldspace location of
+#                 a selected joint
+# author          :Doug Halley
+# date            :2017-12-21
+# version         :3.0
+# usage           :In Maya move_pivot_to_joint.move_pivot_to_joint()
+# notes           :
+# python_version  :2.7.5
 #==============================================================================
 
 import maya.cmds as cmds
 
-def MovePivotToJoint():
-    
-    #gets selection from scene
+def move_pivot_to_joint():
+    """Moves the pivots of selected objects to a selected joint.
+
+    Select the objects and then select a joint. As long as the
+    joint is last object selected then the script can continue.
+    The script will then move the pivots of the selected objects
+    to the joint.
+    """
+    # gets selection from scene
     selection = cmds.ls(sl=True)
 
-    #get last object in selection which should be a joint
+    # get last object in selection which should be a joint
     joint = selection[-1]
 
-    if cmds.objectType(joint, isType = 'joint'):
-        
-        #gets worldspace position of the joint
-        jointPos = cmds.joint(joint, q = True, p = True)
+    if cmds.objectType(joint, isType='joint'):
 
-        #removes joint from selection list
+        # gets worldspace position of the joint
+        joint_pos = cmds.joint(joint, q=True, p=True)
+
+        # removes joint from selection list
         selection.pop()
 
-        errorList = []
+        # list used to collect objects that aren't accounted for
+        error_list = []
 
-        for x in selection:
-            
-            if cmds.objectType( x, isType = 'nurbsSurface' ) or cmds.objectType( x, isType = 'mesh' ) or cmds.objectType( x, isType = 'transform' ):
-                
-                #freeze transforms prior to moving object's pivot
-                cmds.makeIdentity( apply = True, r = True, s = True, t = True, n = False, pn = True )
+        for selected in selection:
 
-                #move object's pivot to the worldspace location of a joint
-                cmds.xform( x, piv = jointPos, ws = True)
+            # check for valid object type otherwise populate error_list
+            if cmds.objectType(selected, isType='nurbsSurface') or \
+                cmds.objectType(selected, isType='mesh') or \
+                    cmds.objectType(selected, isType='transform'):
 
-                #freeze transforms after to moving object's pivot
-                cmds.makeIdentity( apply = True, r = True, s = True, t = True, n = False, pn = True )
+                # freeze transforms prior to moving object's pivot
+                cmds.makeIdentity(apply=True, r=True, s=True, t=True, n=False, pn=True)
+
+                # move object's pivot to the worldspace location of a joint
+                cmds.xform(selected, piv=joint_pos, ws=True)
+
+                # freeze transforms after to moving object's pivot
+                cmds.makeIdentity(apply=True, r=True, s=True, t=True, n=False, pn=True)
 
             else:
-                
-                errorList.append(x)
+                error_list.append(selected)
                 continue
 
-        if errorList:
-            cmds.confirmDialog( title='Error', message='Error running script with these objects' + str(errorList), button=['OK'], defaultButton='Yes', messageAlign = "center" )
-
+        if error_list:
+            cmds.confirmDialog(title='Error', message= \
+                'Error running script with these objects' + str(error_list), \
+                    button=['OK'], defaultButton='Yes', messageAlign='center')
 
     else:
-        cmds.confirmDialog( title='Error', message='A joint was not selected as the target worldspace position.\nEnsure a joint is selected last and re-run script', button=['OK'], defaultButton='Yes', messageAlign = "center" )
+        cmds.confirmDialog(title='Error', message= \
+            'A joint was not selected as the target worldspace position.\n \
+                Ensure a joint is selected last and re-run script', \
+                    button=['OK'], defaultButton='Yes', messaeAlign='center')
+
