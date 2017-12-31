@@ -39,7 +39,7 @@ def move_pivot_to_bottom():
         if cmds.upAxis(q=True, axis=True) == 'y':
 
             # define that the selection's pivot should be at the bottom of the bounding box
-            bottom_pivot = [(bounding_box[0] + bounding_box[3]) / 2,
+            bottom_pivot = [(bounding_box[0] + bounding_box[3]) / 2, \
                 bounding_box[1], (bounding_box[2] + bounding_box[5]) / 2]
 
             # moves pivot to the bottom of the bounding box
@@ -49,7 +49,7 @@ def move_pivot_to_bottom():
         elif cmds.upAxis(q=True, axis=True) == 'z':
 
             # define that the selection's pivot should be at the bottom of the bounding box
-            bottom_pivot = [(bounding_box[0] + bounding_box[3]) / 2,
+            bottom_pivot = [(bounding_box[0] + bounding_box[3]) / 2, \
                 (bounding_box[1] + bounding_box[4]) / 2, bounding_box[2]]
 
             # moves pivot to the bottom of the bounding box
@@ -61,5 +61,6 @@ def move_pivot_to_bottom():
     elif not meshes:
 
         cmds.confirmDialog(title='Error', message='A mesh was not selected.\nSelect a \
-            mesh and re-run script', button=['OK'], defaultButton='Yes',
+            mesh and re-run script', button=['OK'], defaultButton='Yes', \
                 messageAlign='center')
+
