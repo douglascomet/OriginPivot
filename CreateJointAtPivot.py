@@ -1,23 +1,26 @@
-#==============================================================================
-# !/usr/bin/env python
-# title           :CreateJointAtPivot.py
-# description     :Script used to create a joint at the
-#                  world space coordinates of a selection's pivot
-# author          :Doug Halley
-# date            :2017-12-21
-# version         :2.0
-# usage           :In Maya CreateJointAtPivot.CreateJointAtPivot()
-# notes           :
-# python_version  :2.7.5
-#==============================================================================
+'''
+==============================================================================
+!/usr/bin/env python
+title           :CreateJointAtPivot.py
+description     :Script used to create a joint at the
+                 world space coordinates of a selection's pivot
+author          :Doug Halley
+date            :2018-01-17
+version         :3.0
+usage           :In Maya CreateJointAtPivot.create_joint_at_pivot()
+notes           :
+python_version  :2.7.14
+==============================================================================
+'''
 
 import maya.cmds as cmds
 
+
 def create_joint_at_pivot():
-    """If there is a valid selection then get the world space
+    '''If there is a valid selection then get the world space
     position of the selection's pivot and create a joint to that
     position.
-    """
+    '''
 
     # gets selection from scene
     meshes = cmds.ls(sl=True)
@@ -37,6 +40,10 @@ def create_joint_at_pivot():
 
     elif not meshes:
 
-        cmds.confirmDialog(title='Error', message= \
-            'A mesh was not selected.\nSelect a mesh and re-run script', \
-                button=['OK'], defaultButton='Yes', messageAlign="center")
+        cmds.confirmDialog(
+            title='Error',
+            message='A mesh was not selected.\nSelect a mesh and re-run ' +
+            'script',
+            button=['OK'],
+            defaultButton='Yes',
+            messageAlign='center')
