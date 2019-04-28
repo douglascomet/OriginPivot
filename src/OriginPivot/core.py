@@ -5,7 +5,7 @@ def create_joint_at_pivot():
     position.
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     meshes = pm.cmds.ls(sl=True)
 
@@ -41,7 +41,7 @@ def move_pivot_to_bottom():
     5. Moves the selection to the origin
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     meshes = pm.cmds.ls(sl=True)
 
@@ -103,7 +103,7 @@ def move_pivot_to_joint():
     to the joint.
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     selection = pm.cmds.ls(sl=True)
 
@@ -167,7 +167,7 @@ def move_pivot_to_origin():
     Iterates over a selection of objects and moves their pivot to the origin.
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     meshes = pm.cmds.ls(sl=True)
 
@@ -197,7 +197,7 @@ def move_to_origin():
     to the origin.
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     meshes = pm.cmds.ls(sl=True)
 
@@ -240,7 +240,7 @@ def create_pivot_bone():
     Create a bone from the custom pivot context
     """
 
-    import pymel.core as pm
+    import pymel.core as pm # pylint: disable=import-error
 
     # get these values
     loc_xform = None
