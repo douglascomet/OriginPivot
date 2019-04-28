@@ -244,7 +244,7 @@ def create_pivot_bone():
 
     # get these values
     loc_xform = None
-    loc_rp    = None
+    loc_rp = None
 
     # Get manipulator pos and orient
     manip_pin = pm.cmds.manipPivot(pinPivot=True)
@@ -253,15 +253,15 @@ def create_pivot_bone():
 
     # delete existing temp objs
     temp_joint = None
-    temp_loc   = None
-    temp_cluster= None
+    temp_loc = None
+    temp_cluster = None
     temp_joint_name = 'temp_joint'
     temp_loc_name = 'temp_loc'
     temp_cluster_name = 'temp_cluster'
     temp_objs = [temp_joint_name, temp_loc_name]
 
     # get the selectMode
-    sel_mode_obj       = pm.cmds.selectMode(q=True, o=True)
+    sel_mode_obj = pm.cmds.selectMode(q=True, o=True)
     sel_mode_component = pm.cmds.selectMode(q=True, co=True)
 
     # store and clear selection
@@ -272,7 +272,7 @@ def create_pivot_bone():
 
         # create temp joint and set pos/rot
         pm.cmds.select(cl=True)
-        temp_joint= pm.joint(n=temp_joint_name)
+        temp_joint = pm.joint(n=temp_joint_name)
         temp_loc = pm.spaceLocator(n=temp_loc_name)
 
         # get transform from the selected object
